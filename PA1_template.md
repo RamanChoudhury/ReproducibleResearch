@@ -22,7 +22,15 @@ library(lattice)
 ## What is mean total number of steps taken per day?
 
 ###1.Make a histogram of the total number of steps taken each day
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+```r
+#calculate the total number of steps taken per day
+steps.by.day<- summarise(group_by(activity,date),numStep=sum(steps,na.rm = TRUE))
+#Make the histogram 
+hist(steps.by.day$numStep,main="histogramme of the total number of steps taken per day",xlab="")
+```
+
+![](Figs/unnamed-chunk-3-1.png)<!-- -->
 
 ###2.Calculate and report the mean and median of the total number of steps taken per day
 
@@ -52,7 +60,7 @@ maxInter<-steps.by.interval$interval[which.max(steps.by.interval$meanStep)]
 abline(v=maxInter)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](Figs/unnamed-chunk-5-1.png)<!-- -->
 
 ###2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -93,7 +101,7 @@ steps.by.day2<- summarise(group_by(activity.filled.NA,date),numStep=sum(steps,na
 hist(steps.by.day2$numStep,main="histogramme of the total number of steps taken per day",xlab="")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](Figs/unnamed-chunk-8-1.png)<!-- -->
 
 ```r
 data.frame(mean=mean(steps.by.day2$numStep,na.rm = TRUE),median=median(steps.by.day2$numStep,na.rm = TRUE))
@@ -134,5 +142,5 @@ xyplot(meanStep ~ interval | weeksplit, data = steps.by.interval2, layout = c(1,
        main="average number of steps by 5mn time interval",xlab="5mn time interval",ylab="average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](Figs/unnamed-chunk-10-1.png)<!-- -->
 
