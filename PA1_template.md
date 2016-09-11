@@ -6,10 +6,7 @@
 ###1.Load the data
 
 ```r
-temp <- tempfile()
-download.file("https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",temp)
-activity <- read.csv(unz(temp, "activity.csv"),sep=",")
-unlink(temp)
+activity<-read.csv("activity.csv",sep=",")
 ```
 
 ###2.Process/transform the data (if necessary) into a format suitable for your analysis
